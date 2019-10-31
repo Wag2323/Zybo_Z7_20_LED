@@ -28,15 +28,18 @@ end pwm_led;
 
 architecture rtl of pwm_led is
 
-  signal counter  : std_logic_vector(7 downto 0);
-  
+  signal counter  : std_logic_vector(8 downto 0);
+  signal int      : std_logic_vector(8 downto 0);
+    
 begin
+  
+  int <= '0' & input;
   
   PWM : process (clk)
     begin
       if rising_edge(clk) then
-        counter <= counter + 1;
-        if counter <= input then --even input of 0 gets one clk
+        counter <= counter + '1';
+        if counter <= int then --even input of 0 gets one clk
           output <= '1';
         else 
           output <= '0';

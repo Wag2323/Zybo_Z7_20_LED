@@ -32,7 +32,6 @@ end rgb_led_top;
 
 architecture rtl of rgb_led_top is
 
-  signal sw_input    : std_logic_vector(3 downto 0);
   signal color       : std_logic_vector(23 downto 0);
   signal red_out     : std_logic;
   signal green_out   : std_logic;
@@ -41,21 +40,21 @@ architecture rtl of rgb_led_top is
 begin
   
   color <= x"ff0000" when (sw = "0000") else --red
-           x"ff8000" when (sw = "0001") else --orange
-           x"ffff00" when (sw = "0010") else --yellow
-           x"80ff00" when (sw = "0011") else --yellow green
-           x"00ff00" when (sw = "0100") else --green
-           x"00ff80" when (sw = "0101") else --green blue
-           x"00ffff" when (sw = "0110") else --cyan
-           x"0080ff" when (sw = "0111") else --cyan blue
-           x"0000ff" when (sw = "1000") else --blue
-           x"6600cc" when (sw = "1001") else --purple
-           x"ff00ff" when (sw = "1010") else --pink
-           x"ff007f" when (sw = "1011") else --magenta
-           x"808080" when (sw = "1100") else --gray
-           x"660000" when (sw = "1101") else --dark red
-           x"ffffff" when (sw = "1110") else --white
-           x"000000"; --black
+           x"ff2000" when (sw = "0001") else --orange
+           x"ff3f00" when (sw = "0011") else --yellow
+           x"803f00" when (sw = "0010") else --yellow green
+           x"003f00" when (sw = "0110") else --green
+           x"003f80" when (sw = "0111") else --green blue
+           x"003fff" when (sw = "0101") else --cyan
+           x"0020ff" when (sw = "0100") else --cyan blue
+           x"0000ff" when (sw = "1100") else --blue
+           x"6600cc" when (sw = "1101") else --purple
+           x"ff00ff" when (sw = "1111") else --pink
+           x"ff007f" when (sw = "1110") else --magenta
+           x"702070" when (sw = "1010") else --gray
+           x"ffffff" when (sw = "1011") else --white
+           x"101010" when (sw = "1001") else --black
+           x"660000"; --1000 dark red
 
   RGB_RED : entity work.pwm_led
     port map(
